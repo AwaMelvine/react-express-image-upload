@@ -32,10 +32,8 @@ class App extends Component {
     const formData = new FormData();
     formData.append('profileImage', this.state.profileImage);
     formData.append('bio', this.state.bio);
-    // let data = {
-    //   profileImage: this.state.profileImage,
-    //   bio: this.state.bio
-    // }
+
+    // still to resolve promise
     axios.post('/profile', formData);
   }
 
@@ -44,7 +42,7 @@ class App extends Component {
     return (
       <div className="container">
         <div className="row justify-content-md-center">
-          <div className="col-4">
+          <div className="col-4 form-wrapper">
 
             <form onSubmit={this.onSubmit}>
 
@@ -65,7 +63,7 @@ class App extends Component {
                 <textarea name="bio" value={bio} onChange={this.onChange} className="form-control"></textarea>
               </div>
               <div className="form-group">
-                <button type="submit" className="btn btn-primary">Upload user</button>
+                <button type="submit" className="btn btn-primary btn-block">Upload user</button>
               </div>
             </form>
 

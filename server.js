@@ -1,26 +1,34 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
-var multer  = require('multer')
-// var upload = multer({ dest: 'uploads/profile_images' })
+var multer  = require('multer');
+var path  = require('path');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
 var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/profile_images')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
-  }
-})
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/profile_images')
+    },
+    filename: (req, file, cb) => {
+			// get the original name + the date + the extention
+      cb(null, path.basename(file.originalname, path.extname(file.originalname)) + '.' + Date.now() + '.' + path.extname(file.originalname))
+    }
+});
 
 var upload = multer({ storage: storage })
 
 
 app.post('/profile', upload.single('profileImage'), function(req, res){
-  console.log("Hello from the server", req.file);
-  console.log(req.body);
+  // access the file related info in the req.file variable
+
+  let userInfo = {
+    profileImage: req.file.filename,
+    bio: req.body.bio
+  };
+  
+  // Here, userInfo can then be saved to a database
 });
 
 
