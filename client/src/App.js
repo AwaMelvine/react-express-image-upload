@@ -27,17 +27,18 @@ class App extends Component {
   }
 
   onSubmit = e => {
-
+    e.preventDefault();
+    console.log(this.state.profileImage.size);
   }
 
   render() {
-    const { bio, profileImage, imageUrl } = this.state;
+    const { bio, imageUrl } = this.state;
     return (
       <div className="container">
         <div className="row justify-content-md-center">
           <div className="col-4">
 
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.onSubmit}>
 
               <div className="profile-div">
                 {
@@ -45,15 +46,15 @@ class App extends Component {
                   <img src={imageUrl} onClick={() => this.refs.profileImage.click() } className="img-placeholder" alt="" />
                   :
                   <div className="img-placeholder" onClick={() => this.refs.profileImage.click() }>
-                    <span className="hidden">Profile Image</span>
                   </div>
                 }
+                <span>Edit Profile Image</span>
                 <input type="file" ref="profileImage" onChange={this.onChange} className="hidden" />
               </div>
 
               <div className="form-group">
                 <label className="label ">Bio</label>
-                <textarea name="bio" value={bio} className="form-control"></textarea>
+                <textarea name="bio" value={bio} onChange={this.onChange} className="form-control"></textarea>
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary">Upload user</button>

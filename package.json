@@ -1,0 +1,28 @@
+{
+  "name": "react-express-image-upload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "proxy": "http://localhost:8000/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"nodemon run server\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AwaMelvine/react-express-image-upload.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AwaMelvine/react-express-image-upload/issues"
+  },
+  "homepage": "https://github.com/AwaMelvine/react-express-image-upload#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.6.0",
+    "express": "^4.16.3",
+    "multer": "^1.3.1"
+  }
+}
