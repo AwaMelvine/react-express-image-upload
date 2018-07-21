@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
@@ -28,7 +29,14 @@ class App extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log(this.state.profileImage.size);
+    const formData = new FormData();
+    formData.append('profileImage', this.state.profileImage);
+    formData.append('bio', this.state.bio);
+    // let data = {
+    //   profileImage: this.state.profileImage,
+    //   bio: this.state.bio
+    // }
+    axios.post('/profile', formData);
   }
 
   render() {
